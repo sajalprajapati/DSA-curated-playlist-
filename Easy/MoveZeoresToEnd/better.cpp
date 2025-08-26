@@ -9,11 +9,20 @@ class Solution
 
         if(sizeOfArray==0 || sizeOfArray==1){return;}
 
-        int i=0;
-        for(int j=0;j<sizeOfArray;j++){
+        //first check whether there is zeroes present or not ...
+        int checkingZeroes=-1;
+        for(int i=0;i<sizeOfArray;i++){
+            if(arr[i]==0){
+                checkingZeroes=i;
+                break;
+            }
+        }
+
+        if(checkingZeroes==-1) return;
+        for(int j=checkingZeroes;j<sizeOfArray;j++){
             if(arr[j]!=0){
-                swap(arr[i],arr[j]);
-                i++;
+                swap(arr[checkingZeroes],arr[j]);
+                checkingZeroes++;
             }
         }
         

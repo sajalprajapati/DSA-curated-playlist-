@@ -3,34 +3,56 @@
 using namespace std;
 class Solution{
     public:
+    int floorValue(vector<int> &nums,int x,int size){
+
+      int floor=-1;
+      int lower=0;
+      int higher=size-1;
+
+      while(lower<=higher){
+        int middle=lower+(higher-lower)/2;
+
+        if(nums[middle]==x){
+          floor=nums[middle];
+          return floor;
+        }
+        else if (nums[middle]<x){
+            floor=nums[middle];
+            lower=middle+1;
+        }
+        else if(nums[middle]>x){
+            higher=middle-1;
+        }
+      }
+
+      return floor;
+    }
+
+    int CeilValue(vector<int> &nums,int x,int size){
+
+      int ceil=-1;
+      int lower=0;
+      int higher=size-1;
+
+      while(lower<=higher){
+        int middle=lower+(higher-lower)/2;
+
+        if(nums[middle]>=x){
+            ceil=nums[middle];
+            higher=middle-1;
+        }
+        else{
+            lower=middle+1;
+        }
+      }
+
+      return ceil;
+    }
+
    vector<int> getFloorAndCeil(vector<int> nums, int x) {
-       int n=nums.size();
-       vector<int> answer;
-       int floor=-1;
-       int ceil=-1;
-
-      for(int i = 0; i < n; i++) {
-    if (nums[i] == x) {
-        floor = x;
-        ceil = x;
-        break; // Found exact match, no need to look further!
-    }
-    else if (nums[i] < x) {
-        // Only update floor if this number is bigger than the previous floor
-        // or if floor hasn't been set yet (-1)
-        if (nums[i] > floor || floor == -1) { 
-             floor = nums[i];
-        }
-    }
-    else { // nums[i] > x
-        // Only update ceil if this number is smaller than the previous ceil
-        // or if ceil hasn't been set yet (-1)
-        if (nums[i] < ceil || ceil == -1) {
-            ceil = nums[i];
-        }
-    }
-}
-
+      int n=nums.size();
+      int floor=floorValue(nums,x,n);
+      int ceil=CeilValue(nums,x,n);
       return {floor,ceil};
     }
 };

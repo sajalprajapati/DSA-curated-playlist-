@@ -8,8 +8,8 @@ public:
         int n=nums.size();
         
         /*
-        since we are finding the smallest and first .
-        I again say, we are finding the smallest & first....
+        since we are finding the smallest index  and first .
+        I again say, we are finding the smallest index  & first....
         Understand what I mean...
         therefore it looks like arr[i]>=x
         */
